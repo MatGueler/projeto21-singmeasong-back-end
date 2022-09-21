@@ -5,6 +5,14 @@ async function createRandomRecomendation() {
   };
 }
 
+async function createBadRecomendation() {
+  return {
+    name: "Falamansa - Xote dos Milagres",
+    youtubeLink: "asdfdsf",
+  };
+}
+
 export const generateFactory = {
   createRandomRecomendation,
+  createBadRecomendation,
 };
