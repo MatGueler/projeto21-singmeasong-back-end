@@ -1,41 +1,26 @@
 import { prisma } from "../../src/database";
+import { faker } from "@faker-js/faker";
 
 async function createRandomRecomendation() {
   return {
-    name: "Falamansa - Xote dos Milagres",
+    name: faker.lorem.words(3),
     youtubeLink: "https://www.youtube.com/watch?v=chwyjJbcs1Y",
   };
 }
 
-async function createBadRecomendation() {
-  return {
-    name: "Falamansa - Xote dos Milagres",
-    youtubeLink: "asdfdsf",
+async function createRandomRecomendationAndPost() {
+  const randomRecommendation = {
+    name: faker.lorem.words(3),
+    youtubeLink: "https://www.youtube.com/watch?v=chwyjJbcs1Y",
   };
+  await prisma.recommendation.create({ data: randomRecommendation });
 }
 
-async function createRandomicId() {
-  const number = Math.random();
-
-  if (number <= 0.7) {
-    let id = await scoreGreaterTen();
-    if (id) {
-      id = await scoreLessTen();
-      if (id) {
-        return id;
-      }
-    }
-  } else {
-    let id = await scoreLessTen();
-    if (id) {
-      id = await scoreGreaterTen();
-      if (id) {
-        return id;
-      }
-    }
-  }
-  const id = await getAllRecommendations();
-  return id;
+async function createBadRecomendation() {
+  return {
+    name: faker.lorem.words(3),
+    youtubeLink: "asdfdsf",
+  };
 }
 
 async function getAllRecommendations() {
@@ -65,5 +50,5 @@ async function scoreGreaterTen() {
 export const generateFactory = {
   createRandomRecomendation,
   createBadRecomendation,
-  createRandomicId,
+  createRandomRecomendationAndPost,
 };

@@ -7,14 +7,14 @@ import { getDataFactory } from "./factory/getDataRecomendation";
 
 dotenv.config();
 
-// beforeEach(async () => {
-//   await prisma.$executeRaw`TRUNCATE TABLE recommendations`;
-// });
+beforeEach(async () => {
+  await prisma.$executeRaw`TRUNCATE TABLE recommendations`;
+});
 
-// afterAll(async () => {
-//   await prisma.$executeRaw`TRUNCATE TABLE recommendations`;
-//   prisma.$disconnect();
-// });
+afterAll(async () => {
+  await prisma.$executeRaw`TRUNCATE TABLE recommendations`;
+  prisma.$disconnect();
+});
 
 const agent = supertest(app);
 
@@ -76,11 +76,14 @@ describe("GET /recommendations/:id", () => {
 });
 
 describe("GET /recommendations/random", () => {
-  it("Get recomendations by randomic id", async () => {
-    await generateFactory.createRandomRecomendation();
-    const id = await generateFactory.createRandomicId();
-    console.log(id);
-    // const result = await agent.get(`/recommendations/${id}`).send();
-    // expect(result.status).toBe(200);
+  it("Get randomic recomendations", async () => {
+    await generateFactory.createRandomRecomendationAndPost();
+    const result = await agent.get(`/recommendations/random`).send();
+    expect(result.status).toBe(200);
+  });
+
+  it("Get randomic recomendations", async () => {
+    const result = await agent.get(`/recommendations/random`).send();
+    expect(result.status).toBe(404);
   });
 });
