@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon ./src/server.ts"
+    "dev": "nodemon ./src/server.ts",
+    "prisma": "npx prisma migrate dev",
+    "test": "npx dotenv -e .env.test prisma migrate dev && dotenv -e .env.test jest"
   },
   "keywords": [],
   "author": "",
