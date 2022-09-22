@@ -87,3 +87,26 @@ describe("GET /recommendations/random", () => {
     expect(result.status).toBe(404);
   });
 });
+
+describe("GET /recommendations/top/:amount", () => {
+  it("Get high scores", async () => {
+    await generateFactory.createRandomRecomendationAndPost();
+    await generateFactory.createRandomRecomendationAndPost();
+    await generateFactory.createRandomRecomendationAndPost();
+    await generateFactory.createRandomRecomendationAndPost();
+
+    await generateFactory.createRandomRecomendationAndPost();
+    await generateFactory.createRandomRecomendationAndPost();
+    await generateFactory.createRandomRecomendationAndPost();
+    await generateFactory.createRandomRecomendationAndPost();
+
+    await generateFactory.createRandomRecomendationAndPost();
+
+    const amountRecomendations = 8;
+    const result = await agent
+      .get(`/recommendations/top/${amountRecomendations}`)
+      .send();
+    expect(result.status).toBe(200);
+    expect(result.body.length).toEqual(amountRecomendations);
+  });
+});

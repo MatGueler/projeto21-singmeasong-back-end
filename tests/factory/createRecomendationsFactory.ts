@@ -23,30 +23,6 @@ async function createBadRecomendation() {
   };
 }
 
-async function getAllRecommendations() {
-  const recommendations = await prisma.recommendation.findMany();
-  const randomId = Math.floor(Math.random() * (recommendations.length - 1));
-  const randomRecomendation = recommendations[randomId];
-  return randomRecomendation;
-}
-
-async function scoreLessTen() {
-  const recommendations = await prisma.recommendation.findMany({
-    where: { score: { lte: 10 } },
-  });
-  const randomId = Math.floor(Math.random() * (recommendations.length - 1));
-  const randomRecomendation = recommendations[randomId];
-  return randomRecomendation;
-}
-async function scoreGreaterTen() {
-  const recommendations = await prisma.recommendation.findMany({
-    where: { score: { gt: 10 } },
-  });
-  const randomId = Math.floor(Math.random() * (recommendations.length - 1));
-  const randomRecomendation = recommendations[randomId];
-  return randomRecomendation;
-}
-
 export const generateFactory = {
   createRandomRecomendation,
   createBadRecomendation,
