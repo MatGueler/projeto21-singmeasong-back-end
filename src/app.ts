@@ -1,8 +1,8 @@
 import cors from "cors";
 import express from "express";
 import "express-async-errors";
-import { errorHandlerMiddleware } from "./middlewares/errorHandlerMiddleware";
-import recommendationRouter from "./routers/recommendationRouter";
+import { errorHandlerMiddleware } from "./middlewares/errorHandlerMiddleware.js";
+import recommendationRouter from "./routers/recommendationRouter.js";
 
 const app = express();
 app.use(cors());

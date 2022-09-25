@@ -1,9 +1,10 @@
 import { Recommendation } from "@prisma/client";
-import { recommendationRepository } from "../repositories/recommendationRepository";
-import { conflictError, notFoundError } from "../utils/errorUtils";
+import { recommendationRepository } from "../repositories/recommendationRepository.js";
+import { conflictError, notFoundError } from "../utils/errorUtils.js";
 
 export type CreateRecommendationData = Omit<Recommendation, "id" | "score">;
 
+//  DONE => TESTE 1
 async function insert(createRecommendationData: CreateRecommendationData) {
   const existingRecommendation = await recommendationRepository.findByName(
     createRecommendationData.name
@@ -14,12 +15,14 @@ async function insert(createRecommendationData: CreateRecommendationData) {
   await recommendationRepository.create(createRecommendationData);
 }
 
+//  DONE => TESTE 2
 async function upvote(id: number) {
   await getByIdOrFail(id);
 
   await recommendationRepository.updateScore(id, "increment");
 }
 
+//  DONE => TESTE 3
 async function downvote(id: number) {
   await getByIdOrFail(id);
 
@@ -33,6 +36,7 @@ async function downvote(id: number) {
   }
 }
 
+//  - aux
 async function getByIdOrFail(id: number) {
   const recommendation = await recommendationRepository.find(id);
   if (!recommendation) throw notFoundError();
@@ -40,14 +44,17 @@ async function getByIdOrFail(id: number) {
   return recommendation;
 }
 
+//  - aux
 async function get() {
   return recommendationRepository.findAll();
 }
 
+//  - aux
 async function getTop(amount: number) {
   return recommendationRepository.getAmountByScore(amount);
 }
 
+//  TODO => TESTE 4
 async function getRandom() {
   const random = Math.random();
   const scoreFilter = getScoreFilter(random);
@@ -61,6 +68,7 @@ async function getRandom() {
   return recommendations[randomIndex];
 }
 
+//  - aux
 async function getByScore(scoreFilter: "gt" | "lte") {
   const recommendations = await recommendationRepository.findAll({
     score: 10,
@@ -74,6 +82,7 @@ async function getByScore(scoreFilter: "gt" | "lte") {
   return recommendationRepository.findAll();
 }
 
+//  - aux
 function getScoreFilter(random: number) {
   if (random < 0.7) {
     return "gt";
