@@ -23,8 +23,15 @@ async function createBadRecomendation() {
   };
 }
 
+async function deleteAllData() {
+  await prisma.$transaction([
+    prisma.$executeRaw`TRUNCATE TABLE recommendations`,
+  ]);
+}
+
 export const generateFactory = {
   createRandomRecomendation,
   createBadRecomendation,
   createRandomRecomendationAndPost,
+  deleteAllData,
 };

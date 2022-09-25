@@ -1,14 +1,14 @@
 import supertest from "supertest";
-import { prisma } from "../src/database";
-import app from "../src/app";
+import { prisma } from "../../src/database";
+import app from "../../src/app";
 import dotenv from "dotenv";
-import { generateFactory } from "./factory/createRecomendationsFactory";
-import { getDataFactory } from "./factory/getDataRecomendation";
+import { generateFactory } from "../factory/createRecomendationsFactory";
+import { getDataFactory } from "../factory/getDataRecomendation";
 
 dotenv.config();
 
 beforeEach(async () => {
-  await prisma.$executeRaw`TRUNCATE TABLE recommendations`;
+  await generateFactory.deleteAllData();
 });
 
 afterAll(async () => {
