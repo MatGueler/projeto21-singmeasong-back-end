@@ -1,8 +1,4 @@
-import supertest from "supertest";
-import { prisma } from "../../src/database";
-import app from "../../src/app";
 import dotenv from "dotenv";
-import { generateFactory } from "../factory/createRecomendationsFactory";
 import { recommendationService } from "../../src/services/recommendationsService";
 import { recommendationRepository } from "../../src/repositories/recommendationRepository";
 

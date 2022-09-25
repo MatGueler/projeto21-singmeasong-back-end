@@ -54,7 +54,7 @@ async function getTop(amount: number) {
   return recommendationRepository.getAmountByScore(amount);
 }
 
-//  TODO => TESTE 4
+//  DONE => TESTE 4
 async function getRandom() {
   const random = Math.random();
   const scoreFilter = getScoreFilter(random);
