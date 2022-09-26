@@ -6,6 +6,7 @@
 
 <p align = "center">
    <img src="https://img.shields.io/badge/author-Mateus Gueler-4dae71?style=flat-square" />
+   <img src="https://img.shields.io/github/languages/count/MatGueler/projeto21-singmeasong-back-end?color=4dae71&style=flat-square" />
 </p>
 
 ## :clipboard: Description
@@ -21,8 +22,8 @@ Sing me a song is an application for anonymous song recommendation. The more peo
 - Node.js (v16.17.0)
 - TypeScript
 - SQL
-- Prisma
 - Layered Architecture
+- Prisma
 - Jest
 - Cypress
 - Unitary testing
