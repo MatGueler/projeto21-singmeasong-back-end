@@ -132,36 +132,4 @@ npm test:unit
 
 ### **Front-end**
 
-In this project, CYPRESS was also used as a front-end test structure, for that, execute the command below to start the automatic tests. It is important to note that to test the front-end it is necessary to have the back-end server running and react initialized. The following commands are for starting end-to-end testing.
-
-- #### e2e (END-TO-END)
-
-In the back folder, run the command below to start the server.
-
-```
-npm run dev
-```
-
-To initialize the front clone the repository with the command below
-
-```
-git clone https://github.com/MatGueler/projeto21-singmeasong-front-end
-```
-
-Then, inside the folder, run the following command to install the dependencies.
-
-```
-npm install
-```
-
-Finished the process, just run the command bellow to start react app.
-
-```
-npm run start
-```
-
-In other command terminal run the comamand bellow to open cypress.
-
-```
-npx cypress open
-```
+To initialize the front-end follow the steps described in the following link: [front-end repository](https://github.com/MatGueler/projeto21-singmeasong-front-end)
